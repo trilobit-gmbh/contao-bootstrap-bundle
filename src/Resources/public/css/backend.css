@@ -1,0 +1,19 @@
+/**
+ * @file backend.css
+ * trilobit css files
+ *
+ * @author      Peter Adelmann
+ * @company     trilobit GmbH
+ * @team        Apache
+ * @email       peter.adelmann@trilobit.de
+ * @url         http://www.trilobit.de
+ *
+ * @version     2017-09-02_18xx
+ *
+ * __update__: 201x-xx-xx / xx:xx:xx
+ */
+
+.w25 {
+    width: calc(25% - 30px);
+    float: left;
+}

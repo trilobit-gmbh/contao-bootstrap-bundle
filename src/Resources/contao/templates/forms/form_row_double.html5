@@ -1,0 +1,38 @@
+
+<div class="form-group <?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+    <?php $this->block('label'); ?>
+        <?php if ($this->label): ?>
+            <label for="ctrl_<?= $this->id ?>"<?php if ($this->class || $this->classLabel): ?> class="<?= trim($this->class . ' ' . $this->classLabel) ?>"<?php endif; ?>>
+                <?php if ($this->mandatory): ?>
+                    <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->label ?><span class="mandatory">*</span>
+                <?php else: ?>
+                    <?= $this->label ?>
+                <?php endif; ?>
+            </label>
+        <?php endif; ?>
+    <?php $this->endblock(); ?>
+
+    <div class="<?= $this->classField ?>">
+        <?php $this->block('field'); ?>
+        <?php $this->endblock(); ?>
+    </div>
+</div>
+
+<div class="form-group <?= $this->prefix ?> confirm<?php if ($this->class) echo ' ' . $this->class; ?>">
+    <?php $this->block('label2'); ?>
+        <?php if ($this->confirmLabel): ?>
+            <label for="ctrl_<?= $this->id ?>_confirm" class="confirm<?php if ($this->class || $this->classLabel): ?> <?= trim($this->class . ' ' . $this->classLabel) ?><?php endif; ?>">
+                <?php if ($this->mandatory): ?>
+                    <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->confirmLabel ?><span class="mandatory">*</span>
+                <?php else: ?>
+                    <?= $this->confirmLabel ?>
+                <?php endif; ?>
+            </label>
+        <?php endif; ?>
+    <?php $this->endblock(); ?>
+
+    <div class="<?= $this->classField ?>">
+        <?php $this->block('field2'); ?>
+        <?php $this->endblock(); ?>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<?php $this->extend('form_row'); ?>
+
+<?php $this->block('label'); ?>
+    <?php if (!$this->src): ?>
+        <div <?php if ($this->class || $this->classLabel): ?> class="<?= trim($this->class . ' ' . $this->classLabel) ?>"<?php endif; ?>>
+        </div>
+    <?php endif ?>
+<?php $this->endblock(); ?>
+
+<?php $this->block('field'); ?>
+    <?php if ($this->src): ?>
+        <input type="image" src="<?= $this->src ?>" id="ctrl_<?= $this->id ?>" class="submit<?php if ($this->class) echo ' ' . $this->class; ?>" title="<?= StringUtil::specialchars($this->slabel) ?>" alt="<?= StringUtil::specialchars($this->slabel) ?>"<?= $this->getattributes() ?>>
+    <?php else: ?>
+        <button type="submit" id="ctrl_<?= $this->id ?>" class="submit<?php if ($this->class || $this->classButton) echo ' ' . trim($this->class . ' ' . $this->classButton); ?>"<?= $this->getattributes() ?>><?= $this->slabel ?></button>
+    <?php endif ?>
+<?php $this->endblock(); ?>

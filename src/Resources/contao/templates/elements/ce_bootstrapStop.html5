@@ -1,0 +1,11 @@
+</div>
+
+<?php if ($this->addBootstrap !== ''): ?>
+    <?php if ($this->addBootstrapRow !== ''): ?>
+        </div>
+    <?php endif ?>
+
+    <?php if ($this->bootstrapContainerType !== ''): ?>
+        </div>
+    <?php endif ?>
+<?php endif ?>

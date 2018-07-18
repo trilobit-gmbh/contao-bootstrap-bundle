@@ -1,0 +1,73 @@
+<?php
+    $strClassUl = '';
+
+    if ($this->level == 'level_1')
+    {
+        $strClassUl = 'nav navbar-nav';
+    }
+
+    if ($this->level == 'level_2')
+    {
+        $strClassUl = 'dropdown-menu';
+    }
+?>
+<ul class="<?= $strClassUl ?>">
+    <?php foreach ($this->items as $item): ?>
+        <?php
+            $blnSubmenu = preg_match('/submenu/', $item['class']) ? true : false;
+            $blnDivider = preg_match('/divider/', $item['class']) ? true : false;
+
+            $strClassLi = ''
+                . ($item['isActive']                     ? 'active'       : '')
+                . ' '
+                . (preg_match('/trail/', $item['class']) ? 'active trail' : '')
+                . ' '
+                . ($item['class']                        ? $item['class'] : '')
+                . ' '
+                . ($blnSubmenu                           ? 'dropdown'     : '')
+                . ' '
+            ;
+
+            $strClassLi = trim(preg_replace('/\s+/', ' ', $strClassLi));
+
+            $strClassA = $blnSubmenu ? 'dropdown-toggle' : '';
+            $strClassA = trim(preg_replace('/\s+/', ' ', $strClassA));
+        ?>
+
+        <?php if ($blnDivider): ?>
+            <li role="separator" class="divider"></li>
+        <?php else: ?>
+            <li class="<?= $strClassLi ?>">
+
+                <a href="<?= $blnSubmenu ? '#' : $item['href'] ?>"
+                   class="<?= $strClassA ?>"
+                   title="<?= $item['pageTitle'] ? $item['pageTitle'] : $item['title'] ?>"
+
+                    <?php if ($blnSubmenu): ?>
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    <?php endif ?>
+
+                    <?php if ($item['accesskey'] != ''): ?>
+                        accesskey="<?= $item['accesskey'] ?>"
+                    <?php endif ?>
+
+                    <?php if ($item['tabindex']): ?>
+                        tabindex="<?= $item['tabindex'] ?>"
+                    <?php endif ?>
+
+                    <?php if ($item['nofollow']): ?>
+                        rel="nofollow"
+                    <?php endif ?>
+                >
+                    <?= $item['link'] ?>
+                    <?= ($blnSubmenu ? '<span class="caret"></span>' : '') ?>
+
+                </a>
+                <?= $item['subitems'] ?>
+            </li>
+        <?php endif; ?>
+    <?php endforeach ?>
+</ul>

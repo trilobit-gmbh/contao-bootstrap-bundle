@@ -1,0 +1,59 @@
+<?php if ($this->bootstrapFormType === 'form-horizontal'): ?>
+    <div class="form-group <?= $this->prefix ?> has-feedback <?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+        <?php $this->block('label'); ?>
+            <?php if ($this->label): ?>
+                <label for="ctrl_<?= $this->id ?>"<?php if ($this->class || $this->classLabel): ?> class="<?= trim($this->class . ' ' . $this->classLabel) ?>"<?php endif; ?>>
+                    <?php if ($this->mandatory || $this->type === 'captcha'): ?>
+                        <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->label ?><span class="mandatory">*</span>
+                    <?php else: ?>
+                        <?= $this->label ?>
+                    <?php endif; ?>
+                </label>
+            <?php endif; ?>
+        <?php $this->endblock(); ?>
+
+        <div class="<?= $this->classField ?>">
+            <?php $this->block('field'); ?>
+            <?php $this->endblock(); ?>
+        </div>
+    </div>
+
+<?php elseif ($this->bootstrapFormType === 'form-inline'): ?>
+
+    <div class="form-group <?= $this->prefix ?> has-feedback <?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+        <?php $this->block('label'); ?>
+            <?php if ($this->label): ?>
+                <label for="ctrl_<?= $this->id ?>"<?php if ($this->class): ?> class="<?= $this->class ?>"<?php endif; ?>>
+                    <?php if ($this->mandatory): ?>
+                        <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->label ?><span class="mandatory">*</span>
+                    <?php else: ?>
+                        <?= $this->label ?>
+                    <?php endif; ?>
+                </label>
+            <?php endif; ?>
+        <?php $this->endblock(); ?>
+
+        <?php $this->block('field'); ?>
+        <?php $this->endblock(); ?>
+    </div>
+
+<?php else: ?>
+
+    <div class="form-group <?= $this->prefix ?><?php if ($this->class) echo ' ' . $this->class; ?>">
+        <?php $this->block('label'); ?>
+            <?php if ($this->label): ?>
+                <label for="ctrl_<?= $this->id ?>"<?php if ($this->class): ?> class="<?= $this->class ?>"<?php endif; ?>>
+                    <?php if ($this->mandatory): ?>
+                        <span class="invisible"><?= $this->mandatoryField ?> </span><?= $this->label ?><span class="mandatory">*</span>
+                    <?php else: ?>
+                        <?= $this->label ?>
+                    <?php endif; ?>
+                </label>
+            <?php endif; ?>
+        <?php $this->endblock(); ?>
+
+        <?php $this->block('field'); ?>
+        <?php $this->endblock(); ?>
+    </div>
+
+<?php endif ?>

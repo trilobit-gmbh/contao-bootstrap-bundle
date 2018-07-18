@@ -1,0 +1,12 @@
+<?php $this->extend('form_row'); ?>
+
+<?php $this->block('field'); ?>
+    <input type="<?= $this->type ?>" name="<?= $this->name ?>" id="ctrl_<?= $this->id ?>" class="form-control text<?php if ($this->hideInput) echo ' password'; ?><?php if ($this->class) echo ' ' . $this->class; ?>" value="<?= StringUtil::specialchars($this->value) ?>"<?= $this->getAttributes() ?>>
+
+    <?php if ($this->hasErrors()): ?>
+        <span class="form-control-feedback"></span>
+        <p class="error"><?= $this->getErrorAsString() ?></p>
+    <?php else: ?>
+        <span class="form-control-feedback"></span>
+    <?php endif; ?>
+<?php $this->endblock(); ?>

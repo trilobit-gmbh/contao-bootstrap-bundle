@@ -1,0 +1,37 @@
+<?php $this->extend('form_row'); ?>
+
+<?php $this->block('field'); ?>
+    <?php foreach ($this->getOptions() as $option): ?>
+        <?php if ($option['type'] == 'group_start'): ?>
+            <fieldset>
+                <div>
+                    <strong><?= $option['label'] ?></strong>
+                </div>
+        <?php endif; ?>
+
+        <?php if ($option['type'] == 'option'): ?>
+            <?php if ($this->blnInline): ?>
+                <label class="checkbox-inline" id="lbl_<?= $option['id'] ?>" for="opt_<?= $option['id'] ?>">
+                    <input type="radio" name="<?= $option['name'] ?>" id="opt_<?= $option['id'] ?>" value="<?= $option['value'] ?>"<?= $option['checked'] ?><?= $option['attributes'] ?>>
+                    <?= $option['label'] ?>
+                </label>
+            <?php else: ?>
+                <div class="radio">
+                    <label id="lbl_<?= $option['id'] ?>" for="opt_<?= $option['id'] ?>">
+                        <input type="radio" name="<?= $option['name'] ?>" id="opt_<?= $option['id'] ?>" value="<?= $option['value'] ?>"<?= $option['checked'] ?><?= $option['attributes'] ?>>
+                        <?= $option['label'] ?>
+                    </label>
+                </div>
+            <?php endif ?>
+        <?php endif; ?>
+
+        <?php if ($option['type'] == 'group_end'): ?>
+            </fieldset>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <?php if ($this->hasErrors()): ?>
+        <p class="error"><?= $this->getErrorAsString() ?></p>
+    <?php endif; ?>
+
+<?php $this->endblock(); ?>

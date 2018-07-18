@@ -1,0 +1,67 @@
+
+    <?php if ($this->addBootstrap !== ''): ?>
+        <?php if ($this->bootstrapContainerType !== ''): ?>
+            <div class="<?= $this->bootstrapContainerType ?>">
+        <?php endif ?>
+
+        <?php if ($this->addBootstrapRow !== ''): ?>
+            <div class="row">
+        <?php endif ?>
+    <?php endif ?>
+
+
+    <div class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+        <?php $this->block('content'); ?>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <?php
+                $arrTabs = array();
+                ?>
+                <?php $n=0; foreach ($this->elements as $value): ?>
+                    <?php
+                    preg_match_all('/^.*?<h[1-6].*?>(.|\n)(.*?)<\/h.*$/mi', $value, $arrMatch);
+
+                    $arrTabs[] = array(
+                        'name' => trim(strip_tags($arrMatch[0][0])),
+                        'id'   => 'article-' . $this->id . '_tab-' . $n . '-' . \StringUtil::generateAlias(trim(strip_tags($arrMatch[0][0]))),
+                    );
+                    ?>
+
+                    <li role="presentation"<?php if ($n==0): ?> class="active"<?php endif ?>>
+                        <a><span data-target="#<?= $arrTabs[$n]['id'] ?>" aria-controls="<?= $arrTabs[$n]['id'] ?>" role="tab" data-toggle="tab" aria-expanded="<?php if ($n==0): ?>true<?php else: ?>false<?php endif ?>">
+                            <?= $arrTabs[$n]['name'] ?>
+                        </span></a>
+                    </li>
+                <?php $n++; endforeach ?>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <?php $n=0; foreach ($this->elements as $value): ?>
+                    <div role="tabpanel" class="tab-pane fade<?php if ($n==0): ?> in active<?php endif ?>" id="<?= $arrTabs[$n]['id'] ?>">
+                        <?= $value ?>
+                    </div>
+                <?php $n++; endforeach ?>
+            </div>
+
+        <?php $this->endblock(); ?>
+
+        <?php if ($this->backlink): ?>
+            <?php $this->block('backlink'); ?>
+            <!-- indexer::stop -->
+            <p class="back"><a href="<?= $this->backlink ?>" title="<?= $this->back ?>"><?= $this->back ?></a></p>
+            <!-- indexer::continue -->
+            <?php $this->endblock(); ?>
+        <?php endif; ?>
+    </div>
+
+    <?php if ($this->addBootstrap !== ''): ?>
+        <?php if ($this->addBootstrapRow !== ''): ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->bootstrapContainerType !== ''): ?>
+            </div>
+        <?php endif ?>
+    <?php endif ?>

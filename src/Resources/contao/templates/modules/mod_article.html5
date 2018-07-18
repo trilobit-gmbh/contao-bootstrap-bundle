@@ -1,0 +1,146 @@
+
+<?php if ($this->teaserOnly): ?>
+
+    <?php $this->block('alias'); ?>
+
+        <?php if ($this->addBootstrap !== ''): ?>
+            <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
+                <div class="teaser<?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapLayoutContainerClass : '') ?>">
+            <?php endif ?>
+
+            <?php if ($this->bootstrapContainerType !== ''): ?>
+                <div class="<?= $this->bootstrapContainerType ?><?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapContainerTypeSubclass : '') ?>">
+            <?php endif ?>
+
+            <?php if ($this->addBootstrapRow !== ''): ?>
+                <div class="row">
+            <?php endif ?>
+        <?php endif ?>
+
+        <article class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+            <div class="ce_text block">
+                <h2><?= $this->headline ?></h2>
+                <div class="teaser">
+
+                    <?php if (!$this->addBefore): ?>
+                        <?= $this->teaser ?>
+                    <?php endif; ?>
+
+                    <?php if ($this->addImage): ?>
+                        <?php $this->insert('image', $this->arrData); ?>
+                    <?php endif; ?>
+
+                    <?php if ($this->addBefore): ?>
+                        <?= $this->teaser ?>
+                    <?php endif; ?>
+
+                    <p class="more">
+                        <a href="<?= $this->href ?>" title="<?= $this->readMore ?>" class="btn btn-primary"><?= $this->more ?> <span class="invisible"><?= $this->headline ?></span></a>
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <?php if ($this->addBootstrap !== ''): ?>
+            <?php if ($this->addBootstrapRow !== ''): ?>
+                </div>
+            <?php endif ?>
+
+            <?php if ($this->bootstrapContainerType !== ''): ?>
+                </div>
+            <?php endif ?>
+
+            <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
+                </div>
+            <?php endif ?>
+        <?php endif ?>
+
+    <?php $this->endblock(); ?>
+
+<?php elseif ($this->noMarkup): ?>
+
+    <?php $this->block('content'); ?>
+        <?= implode('', $this->elements) ?>
+    <?php $this->endblock(); ?>
+
+<?php else: ?>
+
+    <?php if ($this->addBootstrap !== ''): ?>
+        <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
+            <div<?= ($this->bootstrapContainerTypeSubclass !== '' ? ' class="' . $this->bootstrapLayoutContainerClass . '"' : '') ?>>
+        <?php endif ?>
+
+        <?php if ($this->bootstrapContainerType !== ''): ?>
+            <div class="<?= $this->bootstrapContainerType ?><?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapContainerTypeSubclass : '') ?>">
+        <?php endif ?>
+
+        <?php if ($this->addBootstrapRow !== ''): ?>
+            <div class="row">
+        <?php endif ?>
+    <?php endif ?>
+
+    <div class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+        <?php if ($this->printable): ?>
+            <?php $this->block('syndication'); ?>
+                <!-- indexer::stop -->
+                <div class="syndication">
+                    <?php if ($this->printButton): ?>
+                        <a href="<?= $this->print ?>" class="print" rel="nofollow" title="<?= $this->printTitle ?>" onclick="window.print();return false"><?= Image::getHtml('assets/contao/images/print.svg') ?></a>
+                    <?php endif; ?>
+
+                    <?php if ($this->pdfButton): ?>
+                        <a href="<?= $this->href ?>" class="pdf" rel="nofollow" title="<?= $this->pdfTitle ?>"><?= Image::getHtml('assets/contao/images/pdf.svg') ?></a>
+                    <?php endif; ?>
+
+                    <?php if ($this->facebookButton): ?>
+                        <a href="<?= $this->route('contao_frontend_share', array('p'=>'facebook', 'u'=>$this->encUrl)) ?>" class="facebook" rel="nofollow" title="<?= $this->facebookTitle ?>" onclick="window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');return false"><?= Image::getHtml('assets/contao/images/facebook.svg') ?></a>
+                    <?php endif; ?>
+
+                    <?php if ($this->twitterButton): ?>
+                        <a href="<?= $this->route('contao_frontend_share', array('p'=>'twitter', 'u'=> $this->encUrl, 't'=>$this->encTitle)) ?>" class="twitter" rel="nofollow" title="<?= $this->twitterTitle ?>" onclick="window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');return false"><?= Image::getHtml('assets/contao/images/twitter.svg') ?></a>
+                    <?php endif; ?>
+
+                    <?php if ($this->gplusButton): ?>
+                        <a href="<?= $this->route('contao_frontend_share', array('p'=>'gplus', 'u'=> $this->encUrl)) ?>" class="gplus" rel="nofollow" title="<?= $this->gplusTitle ?>" onclick="window.open(this.href,'','width=600,height=200,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');return false"><?= Image::getHtml('assets/contao/images/gplus.svg') ?></a>
+                    <?php endif; ?>
+                </div>
+                <!-- indexer::continue -->
+            <?php $this->endblock(); ?>
+        <?php endif; ?>
+
+        <?php $this->block('content'); ?>
+            <?= implode('', $this->elements) ?>
+        <?php $this->endblock(); ?>
+
+    </div>
+
+    <?php if ($this->addBootstrap !== ''): ?>
+        <?php if ($this->addBootstrapRow !== ''): ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->bootstrapContainerType !== ''): ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
+            </div>
+        <?php endif ?>
+    <?php endif ?>
+
+    <?php if ($this->backlink): ?>
+        <?php $this->block('backlink'); ?>
+            <!-- indexer::stop -->
+            <?php if ($this->addBootstrap !== '' && $this->addBootstrapRow !== ''): ?>
+                <div class="container-fluid">
+            <?php endif ?>
+            <p class="back">
+                <a href="<?= $this->backlink ?>" title="<?= $this->back ?>" class="btn btn-default"><?= $this->back ?></a>
+            </p>
+            <?php if ($this->addBootstrap !== '' && $this->addBootstrapRow !== ''): ?>
+                </div>
+            <?php endif ?>
+            <!-- indexer::continue -->
+        <?php $this->endblock(); ?>
+    <?php endif; ?>
+<?php endif; ?>

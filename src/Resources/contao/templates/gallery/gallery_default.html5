@@ -1,0 +1,23 @@
+
+<div class="cols_<?= $this->perRow ?> grid-no-gap grid-border" itemscope itemtype="http://schema.org/ImageGallery">
+    <?php foreach ($this->body as $class=>$row): ?>
+        <div class="row">
+            <?php foreach ($row as $col): ?>
+                <?php if ($col->addImage): ?>
+                    <div class="col-md-<?= intval(12 / $this->perRow, 10) ?> grid-item <?= $class ?> <?= $col->class ?>">
+                        <figure class="image_container"<?php if ($col->margin): ?> style="<?= $col->margin ?>"<?php endif; ?> itemscope itemtype="http://schema.org/ImageObject">
+                            <?php if ($col->href): ?>
+                                <a href="<?= $col->href ?>"<?= $col->attributes ?><?php if ($col->linkTitle) echo ' title="' . $col->linkTitle . '"'; ?> itemprop="contentUrl"><?php $this->insert('picture_default', $col->picture); ?></a>
+                            <?php else: ?>
+                                <?php $this->insert('picture_default', $col->picture); ?>
+                            <?php endif; ?>
+                            <?php if ($col->caption): ?>
+                                <figcaption class="caption" itemprop="caption"><?= $col->caption ?></figcaption>
+                            <?php endif; ?>
+                        </figure>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+</div>

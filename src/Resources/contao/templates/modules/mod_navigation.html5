@@ -1,0 +1,41 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-main" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button  type="button"
+                     class="collapsed navbar-toggle"
+                     data-toggle="collapse"
+                     data-target="#navbar-collapse-<?= $this->id ?>"
+                     aria-controls="bs-navbar"
+                     aria-expanded="false"
+            >
+                Menü <i class="fa fa-bars" aria-hidden="true"></i><i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+
+            <a class="navbar-brand" href="/">
+                BRAND
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse"
+             id="navbar-collapse-<?= $this->id ?>"
+        >
+            <a href="<?= $this->request ?>#<?= $this->skipId ?>" class="invisible"><?= $this->skipNavigation ?></a>
+
+            <?= $this->items ?>
+            
+            <ul class="nav navbar-nav navbar-right invisible">
+                <li>
+                    <a href="https://www.trilobit.de/" target="_blank">trilobit GmbH</a>
+                </li>
+            </ul>
+
+            <a id="<?= $this->skipId ?>" class="invisible">&nbsp;</a>
+        </div>
+    </div>
+</nav>
+
+<?php $this->endblock(); ?>
