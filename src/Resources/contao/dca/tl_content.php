@@ -13,6 +13,7 @@
 
 $strTable = 'tl_content';
 
+/*
 $arrDraft = array
 (
     'palettes' => array
@@ -24,6 +25,10 @@ $arrDraft = array
 );
 
 require 'bootstrap.php';
+*/
+
+\Trilobit\BootstrapBundle\Helper::updateDcaPalette($strTable,    'template_legend');
+
 
 // Update options
 $GLOBALS['TL_DCA'][$strTable]['fields']['perRow']['options'] = array(1, 2, 3, 4, 6, 12);

@@ -42,7 +42,7 @@ $arrDraft['bootstrap'] = array
     (
         'palettes' => array
         (
-            'bootstrap_start' => 'bootstrapContainerType,addBootstrapLayoutContainer,addBootstrapRow,addBootstrapCol,addBootstrapVisibility',
+            'bootstrap_start' => '{type_legend},type;{bootstrap_legend:hide},bootstrapContainerType,addBootstrapLayoutContainer,addBootstrapRow,addBootstrapCol,addBootstrapVisibility;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID;{invisible_legend:hide},invisible,start,stop',
         ),
         'subpalettes' => array
         (
@@ -61,6 +61,12 @@ $arrDraft['bootstrap'] = array
         (
             '__selector__',
             'bootstrap_start',
+            'html',
+            'accordionSingle',
+            'accordionStart',
+            'accordionStop',
+            'sliderStart',
+            'sliderStop',
         ),
     ),
     'tl_form' => array
@@ -100,7 +106,7 @@ $arrDraft['fields']['addBootstrap'] = array
     'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrap'],
     'exclude'   => true,
     'inputType' => 'checkbox',
-    'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr w50'),
+    'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr w50 cbx'),
     'sql'       => "char(1) NOT NULL default ''"
 );
 
@@ -114,7 +120,7 @@ foreach (array('Xs', 'Sm', 'Md', 'Lg') as $key)
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapVisible' . $key . 'Block'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => array('tl_class'=>'w25'),
+            'eval'      => array('tl_class'=>'w25 cbx'),
             'sql'       => "char(1) NOT NULL default ''"
         );
 
@@ -123,7 +129,7 @@ foreach (array('Xs', 'Sm', 'Md', 'Lg') as $key)
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapVisible' . $key . 'Inline'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => array('tl_class'=>'w25'),
+            'eval'      => array('tl_class'=>'w25 cbx'),
             'sql'       => "char(1) NOT NULL default ''"
         );
 
@@ -132,7 +138,7 @@ foreach (array('Xs', 'Sm', 'Md', 'Lg') as $key)
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapVisible' . $key . 'InlineBlock'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => array('tl_class'=>'w25'),
+            'eval'      => array('tl_class'=>'w25 cbx'),
             'sql'       => "char(1) NOT NULL default ''"
         );
 
@@ -141,7 +147,7 @@ foreach (array('Xs', 'Sm', 'Md', 'Lg') as $key)
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapHidden' . $key],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => array('tl_class'=>'w25'),
+            'eval'      => array('tl_class'=>'w25 cbx'),
             'sql'       => "char(1) NOT NULL default ''"
         );
 
@@ -214,7 +220,7 @@ if ($strTable !== 'tl_form' && $strTable !== 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapLayoutContainer'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr'),
+        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -233,16 +239,16 @@ if ($strTable !== 'tl_form' && $strTable !== 'tl_form_field')
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapRow'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => array('tl_class'=>'clr w50'),
+            'eval'      => array('tl_class'=>'clr w50 cbx'),
             'sql'       => "char(1) NOT NULL default ''"
         );
 
         $arrDraft['fields']['bootstrapRowSubclass'] = array
         (
             'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapRowSubclass'],
-            'inputType'            => 'text',
-            'eval'                 => array('maxlength'=>255, 'tl_class'=>'w50 clr'),
-            'sql'                  => "varchar(255) NOT NULL default ''"
+            'inputType' => 'text',
+            'eval'      => array('maxlength'=>255, 'tl_class'=>'w50 clr'),
+            'sql'       => "varchar(255) NOT NULL default ''"
         );
     }
 
@@ -251,7 +257,7 @@ if ($strTable !== 'tl_form' && $strTable !== 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapColOffset'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr'),
+        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -260,7 +266,7 @@ if ($strTable !== 'tl_form' && $strTable !== 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapColPush'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr'),
+        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -269,7 +275,7 @@ if ($strTable !== 'tl_form' && $strTable !== 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapVisibility'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr'),
+        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 }
@@ -282,7 +288,7 @@ if ($strTable !== 'tl_form')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['addBootstrapCol'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr w50'),
+        'eval'      => array('submitOnChange'=>true, 'tl_class'=>'clr w50 cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 }
@@ -313,7 +319,7 @@ if ($strTable === 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapFieldDisabled'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('tl_class'=>'clr w50'),
+        'eval'      => array('tl_class'=>'clr w50 cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -322,7 +328,7 @@ if ($strTable === 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapFieldReadonly'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('tl_class'=>'w50'),
+        'eval'      => array('tl_class'=>'w50 cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -331,7 +337,7 @@ if ($strTable === 'tl_form_field')
         'label'     => &$GLOBALS['TL_LANG']['bootstrap']['bootstrapFieldInline'],
         'exclude'   => true,
         'inputType' => 'checkbox',
-        'eval'      => array('tl_class'=>'clr w50'),
+        'eval'      => array('tl_class'=>'clr w50 cbx'),
         'sql'       => "char(1) NOT NULL default ''"
     );
 
@@ -353,6 +359,14 @@ if ($strTable === 'tl_form_field')
         'sql'       => "char(64) NOT NULL default ''"
     );
 }
+
+
+// Paletes
+$GLOBALS['TL_DCA'][$strTable]['palettes'] = array_merge
+(
+    (is_array($GLOBALS['TL_DCA'][$strTable]['palettes'])     ? $GLOBALS['TL_DCA'][$strTable]['palettes']     : array()),
+    (is_array($arrDraft['bootstrap'][$strTable]['palettes']) ? $arrDraft['bootstrap'][$strTable]['palettes'] : array())
+);
 
 
 // Subpaletes

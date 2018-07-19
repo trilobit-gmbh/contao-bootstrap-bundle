@@ -59,6 +59,6 @@ if (TL_MODE == 'BE')
  * Update form_field palette
  */
 
-\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_article',    'template_legend');
-\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_content',    'template_legend');
-\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_form_field', 'expert_legend');
+#\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_article',    'template_legend');
+#\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_content',    'template_legend');
+#\Trilobit\BootstrapBundle\Helper::updateDcaPalette('tl_form_field', 'expert_legend');

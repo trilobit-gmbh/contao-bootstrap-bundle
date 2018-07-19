@@ -12,6 +12,8 @@
  */
 
 namespace Trilobit\BootstrapBundle;
+use Controller;
+use Input;
 
 /**
  * Class Helper
@@ -189,10 +191,14 @@ class Helper
 
     public static function updateDcaPalette($strTable=null, $strAddBefore='expert_legend')
     {
+        if (in_array(Input::get('act'), array('create', 'copy'))) return;
+        if ($strTable === null) return;
+
         $strAddBefore = ';{' . $strAddBefore;
 
-        \Controller::loadDataContainer($strTable);
-        \Controller::loadLanguageFile('bootstrap');
+        //Controller::loadDataContainer($strTable, true);
+        Controller::loadLanguageFile('bootstrap');
+
 
         $arrDraft = array
         (
@@ -207,11 +213,12 @@ class Helper
 
         require __DIR__ . '/../dca/bootstrap.php';
 
-
         // Palettes
         foreach (array_keys($GLOBALS['TL_DCA'][$strTable]['palettes']) as $key)
         {
             if (in_array($key, $arrDraft['bootstrap'][$strTable]['exeptions'])) continue;
+
+            //if (strpos($strAddBefore, $GLOBALS['TL_DCA'][$strTable]['palettes'][$key]) === false) continue;
 
             $GLOBALS['TL_DCA'][$strTable]['palettes'][$key] = str_replace
             (

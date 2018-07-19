@@ -13,6 +13,7 @@
 
 $strTable = 'tl_article';
 
+/*
 $arrDraft = array
 (
     'palettes' => array
@@ -24,3 +25,7 @@ $arrDraft = array
 );
 
 require 'bootstrap.php';
+*/
+
+\Trilobit\BootstrapBundle\Helper::updateDcaPalette($strTable,    'template_legend');
+
