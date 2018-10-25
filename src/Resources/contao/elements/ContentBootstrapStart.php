@@ -19,7 +19,7 @@ namespace Trilobit\BootstrapBundle;
  *
  * @author trilobit GmbH <http://www.trilobit.de>
  */
-class ContentBootstrapStart extends \ContentElement
+class ContentBootstrapStart extends ContentBootstrapWrapper
 {
 
     /**
@@ -43,7 +43,7 @@ class ContentBootstrapStart extends \ContentElement
 
         $this->addBootstrap = '1';
 
-        $_SESSION['Trilobit']['BootstrapBundle']['wrappers'][$this->id] = array
+        self::$wrappers[$this->id] = array
         (
             'addBootstrap' => $this->addBootstrap,
             'bootstrapContainerType' => $this->bootstrapContainerType,

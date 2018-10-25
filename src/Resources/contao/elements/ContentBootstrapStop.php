@@ -19,7 +19,7 @@ namespace Trilobit\BootstrapBundle;
  *
  * @author trilobit GmbH <http://www.trilobit.de>
  */
-class ContentBootstrapStop extends \ContentElement
+class ContentBootstrapStop extends ContentBootstrapWrapper
 {
 
     /**
@@ -40,16 +40,14 @@ class ContentBootstrapStop extends \ContentElement
             $this->Template = new \BackendTemplate($this->strTemplate);
         }
 
-        if (empty($_SESSION['Trilobit']['BootstrapBundle']['wrappers'])) return;
-
-        $arrTmp = array_keys($_SESSION['Trilobit']['BootstrapBundle']['wrappers']);
-        $intLast = end($arrTmp);
-
-        foreach (array_keys($_SESSION['Trilobit']['BootstrapBundle']['wrappers'][$intLast]) as $key)
+        if (empty(self::$wrappers))
         {
-            $this->Template->{$key} = $_SESSION['Trilobit']['BootstrapBundle']['wrappers'][$intLast][$key];
+            return;
         }
 
-        unset($_SESSION['Trilobit']['BootstrapBundle']['wrappers'][$intLast]);
+        foreach (array_pop(self::$wrappers) as $key => $value)
+        {
+            $this->Template->{$key} = $value;
+        }
     }
 }
