@@ -1,6 +1,6 @@
 <?php if ($this->addBootstrap !== ''): ?>
     <?php if ($this->bootstrapContainerType !== ''): ?>
-        <div class="<?= $this->bootstrapContainerType ?><?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapContainerTypeSubclass : '') ?>">
+        <div class="<?= $this->bootstrapContainerType ?>">
     <?php endif ?>
 
     <?php if ($this->addBootstrapRow && $this->addBootstrapRow !== ''): ?>

@@ -5,11 +5,11 @@
 
         <?php if ($this->addBootstrap !== ''): ?>
             <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
-                <div class="teaser<?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapLayoutContainerClass : '') ?>">
+                <div class="teaser">
             <?php endif ?>
 
             <?php if ($this->bootstrapContainerType !== ''): ?>
-                <div class="<?= $this->bootstrapContainerType ?><?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapContainerTypeSubclass : '') ?>">
+                <div class="<?= $this->bootstrapContainerType ?>">
             <?php endif ?>
 
             <?php if ($this->addBootstrapRow !== ''): ?>
@@ -67,11 +67,11 @@
 
     <?php if ($this->addBootstrap !== ''): ?>
         <?php if ($this->addBootstrapLayoutContainer !== ''): ?>
-            <div<?= ($this->bootstrapContainerTypeSubclass !== '' ? ' class="' . $this->bootstrapLayoutContainerClass . '"' : '') ?>>
+            <div<?= ($this->bootstrapLayoutContainerClass !== '' ? ' class="' . $this->bootstrapLayoutContainerClass . '"' : '') ?>>
         <?php endif ?>
 
         <?php if ($this->bootstrapContainerType !== ''): ?>
-            <div class="<?= $this->bootstrapContainerType ?><?= ($this->bootstrapContainerTypeSubclass !== '' ? ' ' . $this->bootstrapContainerTypeSubclass : '') ?>">
+            <div class="<?= $this->bootstrapContainerType ?>">
         <?php endif ?>
 
         <?php if ($this->addBootstrapRow !== ''): ?>
