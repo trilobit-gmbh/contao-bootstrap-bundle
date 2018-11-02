@@ -14,6 +14,8 @@
 /**
  * Register hook to add news items to the indexer
  */
+
+// todo: generalize and remove extended classes
 $GLOBALS['TL_HOOKS']['parseTemplate'][] = array('Trilobit\BootstrapBundle\HookParseTemplate', 'addBootstrapClasses');
 //$GLOBALS['TL_HOOKS']['parseWidget'][]   = array('Trilobit\BootstrapBundle\HookParseWiget',    'addBootstrapClasses');
 
